@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -85,9 +85,27 @@
       const getFocusableElements = () => {
         return Array.from(
           modal.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-          )
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+          ),
         );
+      };
+
+      const handleTabKey = (e) => {
+        if (e.key !== "Tab") return;
+        const focusableElements = getFocusableElements();
+        let currentFocusIndex = 0;
+        if (e.shiftKey) {
+        } else {
+          if (currentFocusIndex !== focusableElements.length - 1) {
+            e.preventDefault();
+            currentFocusIndex += 1;
+            focusableElements[currentFocusIndex].focus();
+          } else {
+            e.preventDefault();
+            currentFocusIndex = 0;
+            focusableElements[currentFocusIndex].focus();
+          }
+        }
       };
 
       // Handle escape key press
