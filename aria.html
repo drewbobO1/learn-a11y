@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -30,54 +30,59 @@
 
           <div class="match-container">
             <!-- Match 1 -->
-            <div class="match">
-              <div class="match-header">
-                <span class="league">Premier League</span>
-                <span class="match-time">72'</span>
-              </div>
-              <div class="teams">
-                <div class="team">
-                  <span class="team-name">Crystal Phoenixes</span>
-                  <span class="score" id="team1-score">2</span>
+            <div aria-live="polite">
+              <div class="match">
+                <div aria-live="polite" class="match-header">
+                  <span class="league">Premier League</span>
+                  <span class="match-time">72'</span>
                 </div>
-                <div class="team">
-                  <span class="team-name">Royal Lions FC</span>
-                  <span class="score" id="team2-score">1</span>
+                <div aria-live="assertive" class="teams">
+                  <div class="team">
+                    <span class="team-name">Crystal Phoenixes</span>
+                    <span class="score" id="team1-score">2</span>
+                  </div>
+                  <div class="team">
+                    <span class="team-name">Royal Lions FC</span>
+                    <span class="score" id="team2-score">1</span>
+                  </div>
                 </div>
-              </div>
-              <div class="match-status" id="match1-status">
-                Latest: Goal! Crystal Phoenixes score in the 70th minute!
+                <div aria-live="polite" class="match-status" id="match1-status">
+                  Latest: Goal! Crystal Phoenixes score in the 70th minute!
+                </div>
               </div>
             </div>
 
             <!-- Match 2 -->
-            <div class="match">
-              <div class="match-header">
-                <span class="league">Champions Cup</span>
-                <span class="match-time">54'</span>
-              </div>
-              <div class="teams">
-                <div class="team">
-                  <span class="team-name">Stellar United</span>
-                  <span class="score" id="team3-score">0</span>
+            <div aria-live="polite">
+              <div class="match">
+                <div class="match-header">
+                  <span class="league">Champions Cup</span>
+                  <span aria-live="polite" class="match-time">54'</span>
                 </div>
-                <div class="team">
-                  <span class="team-name">Atlas Warriors</span>
-                  <span class="score" id="team4-score">0</span>
+                <div aria-live="assertive" class="teams">
+                  <div class="team">
+                    <span class="team-name">Stellar United</span>
+                    <span class="score" id="team3-score">0</span>
+                  </div>
+                  <div class="team">
+                    <span class="team-name">Atlas Warriors</span>
+                    <span class="score" id="team4-score">0</span>
+                  </div>
                 </div>
-              </div>
-              <div class="match-status" id="match2-status">
-                Latest: Yellow card shown to Atlas Warriors defender
+                <div aria-live="polite" class="match-status" id="match2-status">
+                  Latest: Yellow card shown to Atlas Warriors defender
+                </div>
               </div>
             </div>
 
             <!-- Match 3 -->
+            <!-- <div aria-live="polite"> -->
             <div class="match">
               <div class="match-header">
                 <span class="league">Europa Division</span>
-                <span class="match-time">89'</span>
+                <span aria-live="polite" class="match-time">89'</span>
               </div>
-              <div class="teams">
+              <div aria-live="assertive" class="teams">
                 <div class="team">
                   <span class="team-name">Thunder City</span>
                   <span class="score" id="team5-score">3</span>
@@ -87,11 +92,12 @@
                   <span class="score" id="team6-score">3</span>
                 </div>
               </div>
-              <div class="match-status" id="match3-status">
+              <div aria-live="polite" class="match-status" id="match3-status">
                 Latest: 4 minutes of added time announced
               </div>
             </div>
           </div>
+          <!-- </div> -->
 
           <div class="instructions">
             <h3>Making this Accessible</h3>
@@ -192,13 +198,12 @@
 
         // Update time
         document.querySelector(
-          `.match:nth-child(${matchNum}) .match-time`
+          `.match:nth-child(${matchNum}) .match-time`,
         ).textContent = event.time;
 
         // Update status
-        document.getElementById(
-          `match${matchNum}-status`
-        ).textContent = `Latest: ${event.status}`;
+        document.getElementById(`match${matchNum}-status`).textContent =
+          `Latest: ${event.status}`;
 
         // Update scores
         document.getElementById(`team${matchNum * 2 - 1}-score`).textContent =
